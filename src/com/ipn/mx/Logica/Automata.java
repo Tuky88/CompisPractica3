@@ -18,6 +18,7 @@ public class Automata {
     private Estado estadoini;
     private Estado[] estadofin;
     private FuncionTrans[] trans;
+    private int x;
 
     public Automata(Estado[] estados, Simbolo[] simbolos, Estado estadoini, Estado[] estadofin, FuncionTrans[] trans) {
         this.estados = estados;
@@ -82,18 +83,37 @@ public class Automata {
             //System.out.println("ESTADO:"+ei.getNumEstado() +"==" +trans[i].getEstadoini().getNumEstado());
             //System.out.println("TRANSICION:"+tran +" ==" +trans[i].getTransicion().getS());
             
-            if(ei.getNumEstado().equals(trans[i].getEstadoini().getNumEstado()) && tran.equals(trans[i].getTransicion().getS()))
+            if(ei.getNumEstado().equals(trans[i].getEstadoini().getNumEstado()) && (tran.equals(trans[i].getTransicion().getS()) || trans[i].getTransicion().getS().equals("e")))
             {
+                //System.out.println(trans[i].toString());
                 ls.add(trans[i]);
                 //System.out.println(trans[i].toString());
             }
         }
-        int x=ls.size();
+         x=ls.size();
         ftv=new FuncionTrans[x];
         for (int i = 0; i <x; i++) {
             ftv[i]=(FuncionTrans)ls.pop();
-            
         }
         return ftv;
+    }
+        public int contarReglas(Estado ei, String tran) {
+        FuncionTrans[] ftv ;
+        LinkedList ls=new LinkedList();
+
+        for (int i = 0; i <(trans.length); i++) {
+            //System.out.println("BUSQUEDA: "+i);
+            //System.out.println("ESTADO:"+ei.getNumEstado() +"==" +trans[i].getEstadoini().getNumEstado());
+            //System.out.println("TRANSICION:"+tran +" ==" +trans[i].getTransicion().getS());
+            
+            if(ei.getNumEstado().equals(trans[i].getEstadoini().getNumEstado()) && (tran.equals(trans[i].getTransicion().getS()) || trans[i].getTransicion().getS().equals("e")))
+            {
+                //System.out.println(trans[i].toString());
+                ls.add(trans[i]);
+                //System.out.println(trans[i].toString());
+            }
+        }
+         x=ls.size();
+         return x;
     }
 }

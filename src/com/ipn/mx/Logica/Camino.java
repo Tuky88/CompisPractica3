@@ -43,6 +43,10 @@ public class Camino {
     public String toString() {
         return "Camino{" + "eactual=" + eactual + ", recorrido=" + recorrido + ", consumido=" + consumido + '}';
     }
+    public void aumentarConsumido()
+    {
+        this.consumido++;
+    }
 
     
 
@@ -51,5 +55,12 @@ public class Camino {
         this.recorrido = recorrido;
         System.out.println(this.toString());
     }
+
+    public Camino(Estado eactual, String recorrido, int consumido) {
+        this.eactual = eactual;
+        this.recorrido = recorrido;
+        this.consumido = consumido;
+    }
+    
     
 }

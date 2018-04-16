@@ -16,10 +16,10 @@ public class EjecutorPrincial {
 
     public static void main(String[] args) {
         //Escritorio LecturaArchivo la=new LecturaArchivo("/home/axel/Documents/PracticasMicros/Practica1/src/com/ipn/mx/Archivo/2.txt");
-        LecturaArchivo la=new LecturaArchivo("/home/axel/NetBeansProjects/CompisPractica1/src/com/ipn/mx/Archivo/4.txt");
+        LecturaArchivo la=new LecturaArchivo("C:\\Users\\Sistemas\\Documents\\NetBeansProjects\\CompisPractica2\\src\\com\\ipn\\mx\\Archivo\\e1.txt");
         
         EvaluadorAFN ea=new EvaluadorAFN(la.LeerArchivo());
-        ea.Evaluar("-aaa.aaa");
+        ea.Evaluar("abbbab");
         }
     
 }
