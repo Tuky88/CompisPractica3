@@ -19,7 +19,12 @@ public class Automata {
     private Estado[] estadofin;
     private FuncionTrans[] trans;
     private int x;
+    public int CARACTER_Z=90;
 
+    public Automata()
+    {
+        
+    }
     public Automata(Estado[] estados, Simbolo[] simbolos, Estado estadoini, Estado[] estadofin, FuncionTrans[] trans) {
         this.estados = estados;
         this.simbolos = simbolos;

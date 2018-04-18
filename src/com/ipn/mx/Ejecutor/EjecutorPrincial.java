@@ -19,7 +19,8 @@ public class EjecutorPrincial {
         LecturaArchivo la=new LecturaArchivo("C:\\Users\\Sistemas\\Documents\\NetBeansProjects\\CompisPractica2\\src\\com\\ipn\\mx\\Archivo\\e1.txt");
         
         EvaluadorAFN ea=new EvaluadorAFN(la.LeerArchivo());
-        ea.Evaluar("abbbab");
+        ea.ConvertirAFD();
+        //ea.Evaluar("abbbab");
         }
     
 }

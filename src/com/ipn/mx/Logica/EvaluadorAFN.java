@@ -111,4 +111,10 @@ public class EvaluadorAFN {
             
         }
     }
+    
+    public void ConvertirAFD()
+    {
+        Automata at=new Automata();
+        System.out.println((char)auto.CARACTER_Z);
+    }
 }
