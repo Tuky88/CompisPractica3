@@ -108,13 +108,29 @@ public class EvaluadorAFN {
                 }
 
             }
-            
+
         }
     }
-    
-    public void ConvertirAFD()
-    {
-        Automata at=new Automata();
-        System.out.println((char)auto.CARACTER_Z);
+
+    public void ConvertirAFD() {
+        Estado[] estadosini = new Estado[1];
+        estadosini[0] = auto.getEstadoini();
+        Conjunto x= new Conjunto(estadosini);
+        Conjunto c = auto.cerraduraE(x);
+        Conjunto f;
+        LinkedList ls = new LinkedList();
+        ls.add(c);
+        while (!auto.getLsM().isEmpty()) {
+            Conjunto con = (Conjunto) auto.getLsM().pop();
+            System.out.print(con.getId()+"->");
+            for (int i = 0; i < auto.getSimbolos().length; i++) {
+                f=auto.IrA(con, auto.getSimbolos()[i]);
+                System.out.print("\tCaracter: "+auto.getSimbolos()[i].getS()+"->"+ f.getId());
+            }
+            System.out.println("");
+
+        }
+
+        //System.out.println((char)auto.CARACTER_Z);
     }
 }
