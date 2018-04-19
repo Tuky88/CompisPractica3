@@ -16,7 +16,7 @@ public class EjecutorPrincial {
 
     public static void main(String[] args) {
         //Escritorio LecturaArchivo la=new LecturaArchivo("/home/axel/Documents/PracticasMicros/Practica1/src/com/ipn/mx/Archivo/2.txt");
-        LecturaArchivo la=new LecturaArchivo("/home/axel/NetBeansProjects/CompisPractica3/src/com/ipn/mx/Archivo/k.txt");
+        LecturaArchivo la=new LecturaArchivo("C:\\Users\\Sistemas\\Documents\\NetBeansProjects\\CompisPractica3\\src\\com\\ipn\\mx\\Archivo\\k.txt");
         
         EvaluadorAFN ea=new EvaluadorAFN(la.LeerArchivo());
         ea.ConvertirAFD();

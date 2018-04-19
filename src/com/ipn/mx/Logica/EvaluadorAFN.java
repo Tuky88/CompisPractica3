@@ -115,19 +115,24 @@ public class EvaluadorAFN {
     public void ConvertirAFD() {
         Estado[] estadosini = new Estado[1];
         estadosini[0] = auto.getEstadoini();
-        Conjunto x= new Conjunto(estadosini);
+        Conjunto x = new Conjunto(estadosini);
         Conjunto c = auto.cerraduraE(x);
         Conjunto f;
         LinkedList ls = new LinkedList();
         ls.add(c);
-        while (!auto.getLsM().isEmpty()) {
-            Conjunto con = (Conjunto) auto.getLsM().pop();
-            System.out.print(con.getId()+"->");
-            for (int i = 0; i < auto.getSimbolos().length; i++) {
-                f=auto.IrA(con, auto.getSimbolos()[i]);
-                System.out.print("\tCaracter: "+auto.getSimbolos()[i].getS()+"->"+ f.getId());
+        auto.getLsM().add(c);
+        while (!ls.isEmpty()) {
+            Conjunto con = (Conjunto) ls.pop();
+            if (!con.getId().equals("@")) {
+                System.out.print(con.getId() + "->");
+                for (int i = 0; i < auto.getSimbolos().length; i++) {
+                    //System.out.println("IR A:{" + con.getId() + "," + auto.getSimbolos()[i].getS() + "}=");
+                    f = auto.IrA(con, auto.getSimbolos()[i]);
+                    ls.add(f);
+                    System.out.print(" Caracter: " + auto.getSimbolos()[i].getS() + "->" + f.getId());
+                }
+                System.out.println("");
             }
-            System.out.println("");
 
         }
 

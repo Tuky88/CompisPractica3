@@ -14,7 +14,7 @@ public class Conjunto {
 
     public Conjunto(Estado[] estadosA) {
         this.estadosA = estadosA;
-        this.id="NO";
+        this.id="@";
     }
 
     private Estado[] estadosA;
@@ -22,7 +22,7 @@ public class Conjunto {
     public Conjunto(String id, Estado[] estadosA) {
         this.id = id;
         this.estadosA = estadosA;
-//        this.getInfo();
+  //      this.getInfo();
     }
 
     public String getId() {
@@ -48,6 +48,7 @@ public class Conjunto {
     }
     public void getInfo()
     {
+        System.out.println("");
         System.out.println("-------------");
         
         System.out.println("Id:"+ getId());

@@ -31,8 +31,9 @@ public class Burbuja {
         }
         //System.out.println("Ordenados...");
         for (int i = 0; i < estados.length; i++) {
-           // System.out.println(estados[i].toString());
+            //System.out.print(estados[i].toString());
         }
+        //System.out.println("");
         return estados;
     }
     @Override

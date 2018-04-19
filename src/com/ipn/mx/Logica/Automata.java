@@ -6,6 +6,7 @@
 package com.ipn.mx.Logica;
 
 import com.ipn.mx.Util.Burbuja;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -156,7 +157,7 @@ public class Automata {
 
                         ls.add(tran.getEstadofin());
                         lss.add(tran.getEstadofin());
-                        //System.out.println(tran.getEstadofin().toString());
+                        //System.out.print(tran.getEstadofin().toString());
                         xx++;
                     } else {
                         //    System.out.println("ya existe." + tran.getEstadofin().toString());
@@ -180,43 +181,37 @@ public class Automata {
 
         Burbuja b = new Burbuja(estados);
         //System.out.println("valor:" + estados.length);
-        if (estados.length != 0) {
-          //  System.out.println("proceso nuevo" +lsM.size());
+        Boolean banderaTam = true, banderaVac, banderaIg = true;
+        if (estados.length != 0 && lsM.isEmpty()) {
+            //  System.out.println("proceso nuevo" +lsM.size());
             Estado[] edosup = b.ordenar();
- Boolean bandera = true;
- String valor="";
-            for (int i = 0; i < lsM.size(); i++) {
-               //Recorro todos los conjuntos
-                Conjunto consug = (Conjunto) lsM.get(i);
-            //    System.out.println(edosup.length+"//"+consug.getEstadosA().length);
-                if (edosup.length == consug.getEstadosA().length) {     //comparo numero de estados
-                    for (int j = 0; j < edosup.length; i++) {   //comparo elemento por elemento
-                        if (!consug.getEstadosA()[j].getNumEstado().equals(edosup[j].getNumEstado())) {
-              //              System.out.println(consug.getEstadosA()[j].getNumEstado() + edosup[j].getNumEstado());
-                            bandera = false;
-                            valor=consug.getId();
-                            break;
-                        }
+
+            String valor = "@";
+            //lsM.add(c);
+            LinkedList lresp = lsM;
+            while (!lsM.isEmpty()) {
+                Conjunto conju = (Conjunto) lresp.pop();
+                if (Arrays.equals(edosup, conju.getEstadosA())) {
+                    //System.out.println("EXISTENTE");
+                    //System.out.println(edosup.length + "//" + conju.getEstadosA().length);
+                    c = conju;
+                    c.getInfo();
+                    break;
+                } else {
+                    if (!lsM.contains(c)) {
+                        c = new Conjunto(String.valueOf((char) (CARACTER_Z - contadorConjunto)), edosup);
+                       // c.getInfo();
+                        contadorConjunto--;
+                        lsM.add(c);
+
                     }
-                }
-                else
-                {
-                    bandera=true;
+                    //lresp.add(c);
+
                 }
             }
-            
-                if (bandera) {
-                    //System.out.println("valorson:"+valor);
-                    c = new Conjunto(String.valueOf((char) (CARACTER_Z - contadorConjunto)), edosup);
-                    contadorConjunto--;
-                    lsM.add(c);
-                }
-                else
-                {
-                    //System.out.println("ya existe!!!!");
-                    c.setId(valor);
-                }
+
         } else {
+            banderaVac = true;
             c = new Conjunto(String.valueOf("@"), b.ordenar());
 
         }
@@ -230,22 +225,26 @@ public class Automata {
         LinkedList ls = new LinkedList();
         for (int i = 0; i < c.getEstadosA().length; i++) {
             ft = this.buscarRegla(c.getEstadosA()[i], s.getS());
+            //System.out.println("Mover(" + c.getEstadosA()[i].getNumEstado() + "):{" + c.getId() + "," + s.getS() + "}=");
             //System.out.println(ft.toString());
             for (int j = 0; j < ft.length; j++) {
 
                 if (!ls.contains(ft[j].getEstadofin())) {
-                //    System.out.println("Alcanzado:" + ft[j].getEstadofin().toString());
+                    //    System.out.println("Alcanzado:" + ft[j].getEstadofin().toString());
                     ls.add(ft[j].getEstadofin());
                 }
             }
+
         }
         Estado[] edo = new Estado[ls.size()];
+        //System.out.println("Encontrados en mover:");
         for (int i = 0; i < edo.length; i++) {
             edo[i] = (Estado) ls.pop();
-           // System.out.println(edo[i].toString());
+            //System.out.print(edo[i].toString());
         }
         //System.out.println("fin de mover");
         Conjunto co = new Conjunto(edo);
+        //System.out.println("");
         //contadorConjunto++;
         //lsM.add(co);
         return co;
@@ -253,11 +252,9 @@ public class Automata {
 
     public Conjunto IrA(Conjunto c, Simbolo s) {
         //System.out.println(s.toString());
-       return this.cerraduraE(this.Mover(c, s));
+        //System.out.println("C_E{" + c.getId() + "," + s.getS() + "}");
+        return this.cerraduraE(this.Mover(c, s));
 
     }
 
-    
-    
-    
 }
